@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "base.c"
+//main logic loop
 int main(int argv, char** args)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
