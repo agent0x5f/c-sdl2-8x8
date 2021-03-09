@@ -6,6 +6,7 @@
 /*
 TODO: punto, linea, rectangulo. read  y write mapp, mouse click, ui...
 punto hecho!!
+probando git
 */
 
 struct punto
