@@ -1,36 +1,39 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <SDL2/SDL.h>
-
+#include <SDL2/SDL_image.h>
+#include "base.c"
 int main(int argv, char** args)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_Window *window = SDL_CreateWindow("Hello SDL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
-	bool isRunning = true;
 	SDL_Event event;
-	int timer=100;
-	int color=255;
-	while (timer>0)
+	bool quit=false;
+
+	while (quit == false)
 	{
 		while (SDL_PollEvent(&event))
 		{
-			switch (event.type)
-			{
-			case SDL_QUIT:
-				isRunning = false;
-				break;
+			if(event.type == SDL_KEYDOWN)
+				quit = true;	
 
-			case SDL_KEYDOWN:
-				color=0;
-			}
+			SDL_RenderClear(renderer);
+			SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
+			
+
+
+			SDL_RenderClear(renderer);
+			SDL_SetRenderDrawColor(renderer, color1.red , color1.green, color1.blue, color1.alpha);
+			SDL_RenderDrawLine(renderer,100,100,500,500);
+				
+
+			struct punto p1 = {50,50};
+			dpunto(renderer,p1,color2);	
+
+			SDL_RenderPresent(renderer);
 		}
-	timer--;
-		SDL_RenderClear(renderer);
-		SDL_SetRenderDrawColor(renderer, color, 0, 0, 255);
-
-		SDL_RenderPresent(renderer);
 	}
 
 	SDL_DestroyRenderer(renderer);
