@@ -32,10 +32,15 @@ int main(int argv, char** args)
 
 			struct punto p1 = {50,50};
 			dpunto(renderer,p1,cyan);	
-			struct punto p2 = {100,100};
+			struct punto p2 = {100,50};
 			dpunto(renderer,p2,magenta);	
-			struct punto p3 = {150,150};
+			struct punto p3 = {150,50};
 			dpunto(renderer,p3,yellow);	
+			struct punto p4 = {300,200};
+
+			dlinea(renderer,p1,p3,white);
+
+			drectangulo(renderer,p1,p4,green);
 
 			SDL_RenderPresent(renderer);
 		}

@@ -38,8 +38,18 @@ int dpunto(SDL_Renderer* render,struct punto p,struct color c){
     SDL_SetRenderDrawColor(render,c.red,c.green,c.blue,c.alpha);
     SDL_RenderDrawPoint(render,p.x,p.y);
 }
-int dlinea();
-int drectangulo();
+int dlinea(SDL_Renderer* render,struct punto p1,struct punto p2,struct color c){
+    SDL_SetRenderDrawColor(render,c.red,c.green,c.blue,c.alpha);
+    SDL_RenderDrawLine(render,p1.x,p1.y,p2.x,p2.y);
+}
+//luego cambiar a un struct de sdl real...
+int drectangulo(SDL_Renderer* render,struct punto p1,struct punto p2,struct color c){
+    SDL_SetRenderDrawColor(render,c.red,c.green,c.blue,c.alpha);
+    SDL_RenderDrawLine(render,p1.x,p1.y,p2.x,p1.y);
+    SDL_RenderDrawLine(render,p1.x,p1.y,p1.x,p2.y);
+    SDL_RenderDrawLine(render,p1.x,p2.y,p2.x,p2.y);
+    SDL_RenderDrawLine(render,p2.x,p2.y,p2.x,p1.y);
+}
 int cargarbmap();
 int guardarbmap();
 
