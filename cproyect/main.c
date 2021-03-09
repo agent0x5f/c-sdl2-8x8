@@ -26,12 +26,16 @@ int main(int argv, char** args)
 
 
 			SDL_RenderClear(renderer);
-			SDL_SetRenderDrawColor(renderer, color1.red , color1.green, color1.blue, color1.alpha);
+			SDL_SetRenderDrawColor(renderer, 0,0,0,255);
 			SDL_RenderDrawLine(renderer,100,100,500,500);
 				
 
 			struct punto p1 = {50,50};
-			dpunto(renderer,p1,color2);	
+			dpunto(renderer,p1,cyan);	
+			struct punto p2 = {100,100};
+			dpunto(renderer,p2,magenta);	
+			struct punto p3 = {150,150};
+			dpunto(renderer,p3,yellow);	
 
 			SDL_RenderPresent(renderer);
 		}
