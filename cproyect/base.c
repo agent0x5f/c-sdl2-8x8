@@ -5,7 +5,7 @@
 
 /*
 TODO: punto, linea, rectangulo. read  y write mapp, mouse click, ui...
-punto hecho!
+punto hecho!!
 */
 
 struct punto
