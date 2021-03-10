@@ -20,27 +20,20 @@ int main(int argv, char** args)
 			if(event.type == SDL_KEYDOWN)
 				quit = true;	
 
-			SDL_RenderClear(renderer);
-			SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
 			
-
-
+			SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
 			SDL_RenderClear(renderer);
-			SDL_SetRenderDrawColor(renderer, 0,0,0,255);
-			SDL_RenderDrawLine(renderer,100,100,500,500);
-				
-
+			
+			
 			struct punto p1 = {50,50};
-			dpunto(renderer,p1,cyan);	
-			struct punto p2 = {100,50};
-			dpunto(renderer,p2,magenta);	
-			struct punto p3 = {150,50};
-			dpunto(renderer,p3,yellow);	
+			struct punto p2 = {100,50};	
+			struct punto p3 = {180,80};
+			struct punto p5 = {1200,700};
+			dpunto(renderer,p5,yellow);	
 			struct punto p4 = {300,200};
-
-			dlinea(renderer,p1,p3,white);
-
-			drectangulo(renderer,p1,p4,green);
+			dlinea(renderer,p1,p5,white);
+			drectangulop(renderer,p1,p4,green);
+			drectangulom(renderer,p3,200,100,magenta);
 
 			SDL_RenderPresent(renderer);
 		}
