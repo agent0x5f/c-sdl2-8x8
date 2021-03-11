@@ -72,6 +72,13 @@ int drectangulom(SDL_Renderer* render,struct punto p1,int largo,int alto,struct 
     return 0;
 }
 
+int drectangulo(SDL_Renderer* render,struct punto p1,int largo, int alto,struct color c){
+    setcolor(render,c);
+    SDL_Rect aux = {p1.x,p1.y,largo,alto};
+    SDL_RenderFillRect(render,&aux);
+    return 0;
+}
+
 int hacer_fondo(SDL_Renderer* render, struct color c){
     SDL_SetRenderDrawColor(render, c.red,c.green,c.blue,c.alpha);
 	SDL_RenderClear(render);

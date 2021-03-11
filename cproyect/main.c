@@ -37,6 +37,9 @@ int main(int argv, char** args)
 			drectangulop(canvas,p1,p4,green);
 			drectangulom(canvas,p3,200,100,magenta);
 
+			drectangulo(canvas,p4,200,100,green);
+			
+
 			dibuja(canvas);
 		}
 	}
