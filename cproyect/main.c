@@ -26,7 +26,7 @@ int main(int argv, char** args)
 			
 			hacer_ui(canvas);
 			
-			
+			/*
 			struct punto p1 = {50,50};
 			struct punto p2 = {100,50};	
 			struct punto p3 = {180,80};
@@ -38,7 +38,7 @@ int main(int argv, char** args)
 			drectangulom(canvas,p3,200,100,magenta);
 
 			drectangulo(canvas,p4,200,100,green);
-			
+			*/
 
 			dibuja(canvas);
 		}

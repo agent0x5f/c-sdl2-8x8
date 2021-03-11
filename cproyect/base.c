@@ -9,6 +9,9 @@
 /*
 TODO: punto, linea, rectangulo. read  y write mapp, mouse click, ui...
 punto hecho!!
+primitivas de dibujo
+basicos componentes de ui
+letras y colores
 */
 
 struct punto
@@ -87,11 +90,44 @@ int hacer_fondo(SDL_Renderer* render, struct color c){
 
 int hacer_cuadro(SDL_Renderer* render, struct color c){
     struct punto origen = {0,0};
-    drectangulom(render,origen,10,ALTO_VENTANA,c);
-    drectangulom(render,origen,LARGO_VENTANA,10,c);
+    const margen = 5;
+    drectangulo(render,origen,margen,ALTO_VENTANA,c);
+    drectangulo(render,origen,LARGO_VENTANA,margen,c);
     struct punto esquina = {LARGO_VENTANA,ALTO_VENTANA};
-    drectangulom(render,esquina,-10,-ALTO_VENTANA,c);
-    drectangulom(render,esquina,-LARGO_VENTANA,-10,c);
+    drectangulo(render,esquina,-margen,-ALTO_VENTANA,c);
+    drectangulo(render,esquina,-LARGO_VENTANA,-margen,c);
+    struct punto sep = {margen+100,0};
+    drectangulo(render,sep,margen,ALTO_VENTANA,c);
+    struct punto seph = {0,50};
+    drectangulo(render,seph,LARGO_VENTANA,margen,c);
+    seph.y = seph.y+50;
+    while(seph.y<ALTO_VENTANA){
+        drectangulo(render,seph,100+margen,margen,c);
+        seph.y = seph.y+50;
+    }
+    return 0;
+}
+
+int hacer_8x8(SDL_Renderer* render){
+    struct punto origen = {150,100};
+    struct punto final = {550,100};
+    //ejes horizontales
+    for(int x=0;x<=8;x++)
+    {
+        dlinea(render,origen,final,black);
+        origen.y += 50;
+        final.y += 50;
+    }
+
+    struct punto origenv = {150,100};
+    struct punto finalv = {150,500};
+    //ejes verticales
+    for(int x=0;x<=8;x++)
+    {
+        dlinea(render,origenv,finalv,black);
+        origenv.x += 50;
+        finalv.x += 50;
+    }
     return 0;
 }
 
@@ -99,6 +135,7 @@ int hacer_ui(SDL_Renderer* render){
     struct color c = {128,128,128,255};
     hacer_fondo(render,c);
     hacer_cuadro(render,blue);
+    hacer_8x8(render);
     return 0;
 }
 
