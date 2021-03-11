@@ -22,6 +22,7 @@ int main(int argv, char** args)
 		{
 			if(event.type == SDL_KEYDOWN)
 				quit = true;	
+				
 
 			
 			hacer_ui(canvas);

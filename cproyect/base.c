@@ -6,7 +6,7 @@
 #define LARGO_VENTANA 1280
 #define ALTO_VENTANA 720 
 #define MARGEN 5
-
+#define BIT 49
 /*
 TODO: punto, linea, rectangulo. read  y write mapp, mouse click, ui...
 punto hecho!!
@@ -15,13 +15,13 @@ basicos componentes de ui
 letras y colores
 */
 
-struct punto
+typedef struct punto
 {
     int x;
     int y;
 };
 
-struct color
+typedef struct color
 {
     int red;
     int green;
@@ -38,6 +38,19 @@ struct color blue = { 0,0,255,255 };
 struct color cyan = { 0,255,255,255 };
 struct color magenta = { 229,9,127,255 };
 struct color yellow = { 255,255,0,255 };
+
+//mapa de dibujo, 0=black y asi hasta 7=yellow.
+int mapa_pixeles [8][8] = { 
+    {7,7,1,1,1,1,7,7},
+    {7,1,1,0,0,1,1,7},
+    {1,1,4,1,1,1,1,1},
+    {1,1,4,1,1,2,1,1},
+    {1,5,1,1,1,2,1,1},
+    {1,6,1,1,1,1,3,1},
+    {7,1,1,6,1,1,1,7},
+    {7,7,1,1,1,1,7,7}
+};
+
 
 
 int setcolor(SDL_Renderer* render, struct color c){
@@ -110,6 +123,43 @@ int hacer_cuadro(SDL_Renderer* render, struct color c){
     return 0;
 }
 
+struct color id_to_color(int c){
+    struct color val;
+    switch (c)
+    {
+    case 0: val = black;    break;
+    case 1: val = white;    break;
+    case 2: val = red;    break;
+    case 3: val = green;    break;
+    case 4: val = blue;    break;
+    case 5: val = cyan;    break;
+    case 6: val = magenta;    break;
+    case 7: val = yellow;    break;
+    }
+    return val;
+}
+
+int dibuja_8x8(SDL_Renderer* render){
+    struct punto origen = {150+1,100+1};
+    int y=0;
+    int x=0;
+
+    for(x=0;x<8;x++)
+    {
+    drectangulo(render, origen, BIT,BIT, id_to_color(mapa_pixeles[y][x]));
+        for(y=0;y<8;y++)
+        {
+        drectangulo(render, origen, BIT,BIT, id_to_color(mapa_pixeles[y][x]));
+        origen.y += 50;       
+        }
+    origen.x += 50; 
+    origen.y = 100+1;
+    }
+
+
+    return 0;
+}
+
 int hacer_8x8(SDL_Renderer* render){
     struct punto origen = {150,100};
     struct punto final = {550,100};
@@ -130,14 +180,15 @@ int hacer_8x8(SDL_Renderer* render){
         origenv.x += 50;
         finalv.x += 50;
     }
+    dibuja_8x8(render);
     return 0;
 }
 
 int poner_tabla_colores(SDL_Renderer* render){
     struct punto clavo = {0+MARGEN,50+MARGEN};
-    drectangulo(render,clavo,100,50-MARGEN,white);
-    clavo.y += 50;
     drectangulo(render,clavo,100,50-MARGEN,black);
+    clavo.y += 50;
+    drectangulo(render,clavo,100,50-MARGEN,white);
     clavo.y += 50;
     drectangulo(render,clavo,100,50-MARGEN,red);
     clavo.y += 50;
