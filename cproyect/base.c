@@ -3,6 +3,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#define LARGO_VENTANA 1280
+#define ALTO_VENTANA 720 
+
 /*
 TODO: punto, linea, rectangulo. read  y write mapp, mouse click, ui...
 punto hecho!!
@@ -66,6 +69,34 @@ int drectangulom(SDL_Renderer* render,struct punto p1,int largo,int alto,struct 
     SDL_RenderDrawLine(render,p1.x,p1.y,p1.x,p1.y+alto);
     SDL_RenderDrawLine(render,p1.x,p1.y+alto,p1.x+largo,p1.y+alto);
     SDL_RenderDrawLine(render,p1.x+largo,p1.y+alto,p1.x+largo,p1.y);
+    return 0;
+}
+
+int hacer_fondo(SDL_Renderer* render, struct color c){
+    SDL_SetRenderDrawColor(render, c.red,c.green,c.blue,c.alpha);
+	SDL_RenderClear(render);
+    return 0;
+}
+
+int hacer_cuadro(SDL_Renderer* render, struct color c){
+    struct punto origen = {0,0};
+    drectangulom(render,origen,10,ALTO_VENTANA,c);
+    drectangulom(render,origen,LARGO_VENTANA,10,c);
+    struct punto esquina = {LARGO_VENTANA,ALTO_VENTANA};
+    drectangulom(render,esquina,-10,-ALTO_VENTANA,c);
+    drectangulom(render,esquina,-LARGO_VENTANA,-10,c);
+    return 0;
+}
+
+int hacer_ui(SDL_Renderer* render){
+    struct color c = {128,128,128,255};
+    hacer_fondo(render,c);
+    hacer_cuadro(render,blue);
+    return 0;
+}
+
+int dibuja(SDL_Renderer* render){
+    SDL_RenderPresent(render);
     return 0;
 }
 
