@@ -42,7 +42,7 @@ struct color yellow = { 255,255,0,255 };
 //mapa de dibujo, 0=black y asi hasta 7=yellow.
 int mapa_pixeles [8][8] = { 
     {7,7,1,1,1,1,7,7},
-    {7,1,1,0,0,1,1,7},
+    {7,1,1,0,0,3,1,7},
     {1,1,4,1,1,1,1,1},
     {1,1,4,1,1,2,1,1},
     {1,5,1,1,1,2,1,1},
@@ -201,20 +201,60 @@ int poner_tabla_colores(SDL_Renderer* render){
     drectangulo(render,clavo,100,50-MARGEN,magenta);
     clavo.y += 50;
     drectangulo(render,clavo,100,50-MARGEN,yellow);
+    
     return 0;
 }
 
-int hacer_ui(SDL_Renderer* render){
+int hacer_ui(SDL_Renderer* render,int eventos){
     struct color c = {128,128,128,255};
     hacer_fondo(render,c);
     hacer_cuadro(render,blue);
     hacer_8x8(render);
     poner_tabla_colores(render);
+
+    if(eventos==1)
+			mouseclick(render);
     return 0;
 }
 
 int dibuja(SDL_Renderer* render){
     SDL_RenderPresent(render);
+    return 0;
+}
+
+int mouseclick(SDL_Renderer* render){
+    int px;
+    int py;
+    struct punto clavo = {0+MARGEN,650+MARGEN};
+    if (SDL_GetMouseState(&px, &py) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
+        
+        if(px>=0 + MARGEN && px<= 100+MARGEN)
+        {
+            if(py>= 50+ MARGEN && py<= 50+50-MARGEN)        
+                drectangulo(render,clavo,100,50-MARGEN,black);
+            
+            if(py>= 100+ MARGEN && py<= 100+50-MARGEN)
+                drectangulo(render,clavo,100,50-MARGEN,white);
+
+            if(py>= 150+ MARGEN && py<= 150+50-MARGEN)
+                drectangulo(render,clavo,100,50-MARGEN,red);
+
+            if(py>= 200+ MARGEN && py<= 200+50-MARGEN)
+                drectangulo(render,clavo,100,50-MARGEN,green);
+
+            if(py>= 250+ MARGEN && py<= 250+50-MARGEN)
+                drectangulo(render,clavo,100,50-MARGEN,blue);
+
+            if(py>= 300+ MARGEN && py<= 300+50-MARGEN)
+                drectangulo(render,clavo,100,50-MARGEN,cyan);
+
+            if(py>= 350+ MARGEN && py<= 350+50-MARGEN)
+                drectangulo(render,clavo,100,50-MARGEN,magenta);
+
+            if(py>= 400+ MARGEN && py<= 400+50-MARGEN)
+                drectangulo(render,clavo,100,50-MARGEN,yellow);
+        }   
+    }
     return 0;
 }
 
